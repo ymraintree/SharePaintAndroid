@@ -1,5 +1,5 @@
 #External Dependencies
-#Fri Apr 08 18:41:50 JST 2011
+#Fri Apr 08 19:11:06 JST 2011
 C\:\\Users\\yano\\eclipse-workspace-android\\SharePaintAndroid\\project\\boot\\scala-2.8.1\\lib\\scala-library.jar=src\\main\\scala\\test\\android\\PenProperties.scala;src\\main\\scala\\test\\android\\SPCanvas.scala;src\\main\\scala\\Activity.scala
 C\:\\Program\ Files\ (x86)\\Java\\jre6\\lib\\rt.jar=src\\main\\scala\\test\\android\\PenProperties.scala;src\\main\\scala\\test\\android\\SPCanvas.scala
 C\:\\app\\Android\\android-sdk\\platforms\\android-8\\android.jar=src\\main\\scala\\test\\android\\SPCanvas.scala;src\\main\\scala\\Activity.scala

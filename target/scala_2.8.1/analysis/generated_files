@@ -1,5 +1,5 @@
 #Generated Classes
-#Fri Apr 08 18:41:50 JST 2011
+#Fri Apr 08 19:11:06 JST 2011
 src\\main\\scala\\test\\android\\SPCanvas.scala=target\\scala_2.8.1\\classes\\test\\android\\SPCanvas.class
 src\\main\\java\\test\\android\\R.java=target\\scala_2.8.1\\classes\\test\\android\\R.class;target\\scala_2.8.1\\classes\\test\\android\\R$string.class;target\\scala_2.8.1\\classes\\test\\android\\R$layout.class;target\\scala_2.8.1\\classes\\test\\android\\R$attr.class;target\\scala_2.8.1\\classes\\test\\android\\R$drawable.class
 src\\main\\scala\\Activity.scala=target\\scala_2.8.1\\classes\\test\\android\\MainActivity.class
