@@ -7,8 +7,9 @@ import _root_.android.widget.TextView
 class MainActivity extends Activity {
   override def onCreate(savedInstanceState: Bundle) {
     super.onCreate(savedInstanceState)
-    setContentView(new TextView(this) {
-      setText("hello, world")
-    })
+      setContentView(R.layout.main);
+//    setContentView(new TextView(this) {
+//      setText("hello, world, hello scala!")
+//    })
   }
 }
