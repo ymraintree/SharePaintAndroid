@@ -11,24 +11,29 @@ class SPCanvas(context:Context, attrs:AttributeSet) extends View(context, attrs)
 	val height = 860
 	var onStroke = false
 	var penProperties = new PenProperties
-	var imageBuffer:Bitmap = null
+	var imageBuffer:Option[Bitmap] = None
+//	var imageBuffer:Bitmap = null
 	var lastX, lastY:Int = _
 	clearCanvas
 
 	private def clearCanvas {
-		if (imageBuffer != null) imageBuffer.recycle
-		imageBuffer = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-		imageBuffer.eraseColor(0xffffffff);
+		imageBuffer match {
+			case Some(n) => n.recycle
+			case _ => imageBuffer = Some(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888))
+		}
+//		if (imageBuffer != None) imageBuffer.get.recycle
+		imageBuffer = Some(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888))
+		imageBuffer.get.eraseColor(0xffffffff)
 		invalidate();
 	}
 	
 	override def onDraw(canvas:Canvas) {
 		super.onDraw(canvas)
-		if (imageBuffer != null) canvas.drawBitmap(imageBuffer, 0, 0, null);		
+		if (imageBuffer != None) canvas.drawBitmap(imageBuffer.get, 0, 0, null);		
 	}
 	
 	override def onTouchEvent(event:MotionEvent):Boolean = {
-		if (imageBuffer == null) return false;
+		if (imageBuffer == None) return false;
 		val x:Int = event.getX.asInstanceOf[Int]
 		val y:Int = event.getY.asInstanceOf[Int]
 		
@@ -62,7 +67,7 @@ class SPCanvas(context:Context, attrs:AttributeSet) extends View(context, attrs)
 	private def touchReleased(x:Int, y:Int) { onStroke = false }
 
 	private def drawLine(lastX2:Int, lastY2:Int, x:Int, y:Int) {
-		val canvas:Canvas = new Canvas(imageBuffer)
+		val canvas:Canvas = new Canvas(imageBuffer.get)
 		val paint = new Paint(Paint.ANTI_ALIAS_FLAG)
 		paint.setStrokeCap(Paint.Cap.ROUND)
 		paint.setStrokeWidth(penProperties.width)
