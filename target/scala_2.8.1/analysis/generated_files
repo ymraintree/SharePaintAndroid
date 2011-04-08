@@ -1,0 +1,4 @@
+#Generated Classes
+#Fri Apr 08 15:53:39 JST 2011
+src\\main\\java\\test\\android\\R.java=target\\scala_2.8.1\\classes\\test\\android\\R.class;target\\scala_2.8.1\\classes\\test\\android\\R$string.class;target\\scala_2.8.1\\classes\\test\\android\\R$attr.class;target\\scala_2.8.1\\classes\\test\\android\\R$drawable.class
+src\\main\\scala\\Activity.scala=target\\scala_2.8.1\\classes\\test\\android\\MainActivity.class;target\\scala_2.8.1\\classes\\test\\android\\MainActivity$$anon$1.class
