@@ -1,6 +1,6 @@
 package test.android
 
-class PenProperties(val color:Int, val width:Int, val density:Int) {
+class PenProperties(var color:Int, var width:Int, var density:Int) {
 //	var color:Int = _
 //	var width:Int = _
 //	var density:Int = _
