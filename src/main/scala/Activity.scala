@@ -7,6 +7,7 @@ import _root_.android.widget._
 import _root_.android.view._
 import _root_.android.view.View._
 import _root_.android.content._
+import ConverterHelper._
 
 object MainActivity {
 	val ShowPenPropertiesId = 0
@@ -27,19 +28,15 @@ class MainActivity extends Activity with TypedActivity {
 //    		val intent = new Intent(MainActivity.this, classOf[PenSettingsActivity])
 //    		startActivityForResult(intent, MainActivity.ShowPenPropertiesId)
 //    	})
-    	findView(TR.pen_prop_btn).setOnClickListener(
-    		new OnClickListener { def onClick(v: View) {
+    	findView(TR.pen_prop_btn).setOnClickListener( () => {
+//    		new OnClickListener { def onClick(v: View) {
     			val intent = new Intent(MainActivity.this, classOf[PenSettingsActivity])
     			intent.putExtra(MainActivity.PenWidthName, MainActivity.canvasView.penProperties.width)
     			intent.putExtra(MainActivity.PenColorName, MainActivity.canvasView.penProperties.color)
     			startActivityForResult(intent, MainActivity.ShowPenPropertiesId)
-    		}}
+    		}
     	)
-    	findView(TR.undo_btn).setOnClickListener(
-    		new OnClickListener { def onClick(v: View) {
-    			MainActivity.canvasView.undoOneStroke
-    		}}
-    	)
+    	findView(TR.undo_btn).setOnClickListener( () => MainActivity.canvasView.undoOneStroke )
     }
     
     override def onActivityResult(reqId:Int, result:Int, intent:Intent) {
@@ -72,16 +69,11 @@ class PenSettingsActivity extends Activity with TypedActivity {
 		val penColor = getIntent.getIntExtra(MainActivity.PenColorName, 0)
     	if (penColor != 0) setColorButton(penColor)
     	
-    	findView(TR.pen_prop_ok_btn).setOnClickListener(
-    		new OnClickListener { def onClick(v: View) {
-    			okButtonPressed
-    		}}
-    	)
-    	findView(TR.pen_prop_cancel_btn).setOnClickListener(
-    		new OnClickListener { def onClick(v: View) {
+    	findView(TR.pen_prop_ok_btn).setOnClickListener( () => okButtonPressed )
+    	findView(TR.pen_prop_cancel_btn).setOnClickListener( () => {
     			setResult(RESULT_CANCELED)
     			finish
-    		}}
+    		}
     	)
 	}
 	
@@ -111,4 +103,12 @@ class PenSettingsActivity extends Activity with TypedActivity {
     	finish
 	}
 
+}
+
+object ConverterHelper{
+  import android.view.View.OnClickListener
+  implicit def funcToClicker(f:View => Unit):OnClickListener = 
+    new OnClickListener(){ def onClick(v:View)=f.apply(v)}
+  implicit def funcToClicker0(f:() => Unit):OnClickListener = 
+    new OnClickListener() { def onClick(v:View)=f.apply}
 }
