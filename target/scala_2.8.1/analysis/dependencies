@@ -1,5 +1,5 @@
 #Source Dependencies
-#Sat Apr 09 18:52:48 JST 2011
+#Sun Apr 10 00:09:46 JST 2011
 src\\main\\scala\\test\\android\\Stroke.scala=src\\main\\scala\\test\\android\\CanvasView.scala
 src\\main\\scala\\test\\android\\CanvasView.scala=src\\main\\scala\\Activity.scala;src_managed\\main\\scala\\TR.scala
 src\\main\\java\\test\\android\\R.java=src\\main\\scala\\Activity.scala;src_managed\\main\\scala\\TR.scala
