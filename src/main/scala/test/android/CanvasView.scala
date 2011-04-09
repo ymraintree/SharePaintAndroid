@@ -5,7 +5,7 @@ import android.graphics._
 import android.content._
 import android.util._
 
-class SPCanvas(context:Context, attrs:AttributeSet) extends View(context, attrs) {
+class CanvasView(context:Context, attrs:AttributeSet) extends View(context, attrs) {
 	
 	val width = 480
 	val height = 860
@@ -19,12 +19,12 @@ class SPCanvas(context:Context, attrs:AttributeSet) extends View(context, attrs)
 	private def clearCanvas {
 		imageBuffer match {
 			case Some(n) => n.recycle
-			case _ => imageBuffer = Some(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888))
+			case None => imageBuffer = Some(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888))
 		}
 //		if (imageBuffer != None) imageBuffer.get.recycle
-		imageBuffer = Some(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888))
+//		imageBuffer = Some(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888))
 		imageBuffer.get.eraseColor(0xffffffff)
-		invalidate();
+		invalidate()
 	}
 	
 	override def onDraw(canvas:Canvas) {

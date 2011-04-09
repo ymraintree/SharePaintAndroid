@@ -1,6 +1,7 @@
 #Source Dependencies
-#Fri Apr 08 19:11:06 JST 2011
-src\\main\\scala\\test\\android\\SPCanvas.scala=
-src\\main\\java\\test\\android\\R.java=src\\main\\scala\\Activity.scala
+#Sat Apr 09 14:57:45 JST 2011
+src\\main\\scala\\test\\android\\CanvasView.scala=src\\main\\scala\\Activity.scala;src_managed\\main\\scala\\TR.scala
+src\\main\\java\\test\\android\\R.java=src\\main\\scala\\Activity.scala;src_managed\\main\\scala\\TR.scala
+src_managed\\main\\scala\\TR.scala=src\\main\\scala\\Activity.scala
 src\\main\\scala\\Activity.scala=
-src\\main\\scala\\test\\android\\PenProperties.scala=src\\main\\scala\\test\\android\\SPCanvas.scala
+src\\main\\scala\\test\\android\\PenProperties.scala=src\\main\\scala\\test\\android\\CanvasView.scala

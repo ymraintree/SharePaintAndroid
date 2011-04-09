@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<test.android.SPCanvas  
+<test.android.CanvasView
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:text="@string/hello"
-    />
+    android:id="@+id/canvas_view"/>
+<LinearLayout
+    android:gravity="bottom|right"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <Button android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="Pen"
+    	android:id="@+id/pen_prop_btn"/>
 </LinearLayout>
+
+</AbsoluteLayout>

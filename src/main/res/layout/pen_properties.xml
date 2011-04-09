@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	<TextView android:text="ペン色"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"/>
+	<RadioGroup android:orientation="horizontal"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content">
+    	<RadioButton android:text="黒" android:id="@+id/pencolor_black"/>
+    	<RadioButton android:text="白" android:id="@+id/pencolor_white"/>
+    	<RadioButton android:text="赤" android:id="@+id/pencolor_red"/>
+    	<RadioButton android:text="緑" android:id="@+id/pencolor_green"/>
+    	<RadioButton android:text="青" android:id="@+id/pencolor_blue"/>
+   	</RadioGroup>
+    	
+	<TextView android:text="ペン幅"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"/>
+    <SeekBar android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:max="25"
+    	android:id="@+id/pen_width"/>
+    	
+	<TextView android:text="ペン濃度"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"/>
+    <SeekBar android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:max="255"
+    	android:id="@+id/pen_density"/>
+    
+	<TextView android:text="レイヤー"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"/>
+	<RadioGroup android:orientation="horizontal"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content">
+    	<RadioButton android:text="0" android:id="@+id/layer_0"/>
+    	<RadioButton android:text="1" android:id="@+id/layer_1"/>
+    	<RadioButton android:text="2" android:id="@+id/layer_2"/>
+   	</RadioGroup>
+    
+	<TextView android:text=""
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_weight="1"/>
+    	
+	<LinearLayout android:orientation="horizontal"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content">
+    	<Button android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1"
+    		android:text="Cancel"
+    		android:id="@+id/pen_prop_cancel_btn"/>
+ 		<TextView android:text=""
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1"/>
+    	<Button android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1"
+    		android:text="OK"
+    		android:id="@+id/pen_prop_ok_btn"/>
+	</LinearLayout>
+    	
+</LinearLayout>
