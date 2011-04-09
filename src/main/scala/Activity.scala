@@ -35,6 +35,11 @@ class MainActivity extends Activity with TypedActivity {
     			startActivityForResult(intent, MainActivity.ShowPenPropertiesId)
     		}}
     	)
+    	findView(TR.undo_btn).setOnClickListener(
+    		new OnClickListener { def onClick(v: View) {
+    			MainActivity.canvasView.undoOneStroke
+    		}}
+    	)
     }
     
     override def onActivityResult(reqId:Int, result:Int, intent:Intent) {
@@ -105,4 +110,5 @@ class PenSettingsActivity extends Activity with TypedActivity {
     	setResult(RESULT_OK, intent)
     	finish
 	}
+
 }

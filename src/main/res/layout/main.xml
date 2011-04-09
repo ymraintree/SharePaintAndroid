@@ -15,6 +15,10 @@
     android:layout_height="fill_parent">
     <Button android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
+    	android:text="Undo"
+    	android:id="@+id/undo_btn"/>
+    <Button android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
     	android:text="Pen"
     	android:id="@+id/pen_prop_btn"/>
 </LinearLayout>

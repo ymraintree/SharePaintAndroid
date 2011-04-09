@@ -9,6 +9,7 @@ object TR {
   val pen_prop_cancel_btn = TypedResource[android.widget.Button](R.id.pen_prop_cancel_btn)
   val pencolor_green = TypedResource[android.widget.RadioButton](R.id.pencolor_green)
   val pen_prop_ok_btn = TypedResource[android.widget.Button](R.id.pen_prop_ok_btn)
+  val undo_btn = TypedResource[android.widget.Button](R.id.undo_btn)
   val layer_2 = TypedResource[android.widget.RadioButton](R.id.layer_2)
   val pencolor_white = TypedResource[android.widget.RadioButton](R.id.pencolor_white)
   val layer_1 = TypedResource[android.widget.RadioButton](R.id.layer_1)

@@ -1,9 +1,13 @@
 package test.android
 
+import java.lang.Math
+import java.util.Vector
+
 import android.view._
 import android.graphics._
 import android.content._
 import android.util._
+import scala.collection.immutable.TreeMap
 
 class CanvasView(context:Context, attrs:AttributeSet) extends View(context, attrs) {
 	
@@ -14,8 +18,12 @@ class CanvasView(context:Context, attrs:AttributeSet) extends View(context, attr
 	var imageBuffer:Option[Bitmap] = None
 //	var imageBuffer:Bitmap = null
 	var lastX, lastY:Int = _
+	var layerIndex = 0
 	clearCanvas
 
+	var strokesHistory:Map[Long, Stroke] = new TreeMap[Long, Stroke]
+	var xArray, yArray:Vector[Int] = _
+	
 	private def clearCanvas {
 		imageBuffer match {
 			case Some(n) => n.recycle
@@ -24,7 +32,7 @@ class CanvasView(context:Context, attrs:AttributeSet) extends View(context, attr
 //		if (imageBuffer != None) imageBuffer.get.recycle
 //		imageBuffer = Some(Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888))
 		imageBuffer.get.eraseColor(0xffffffff)
-		invalidate()
+		invalidate
 	}
 	
 	override def onDraw(canvas:Canvas) {
@@ -49,6 +57,11 @@ class CanvasView(context:Context, attrs:AttributeSet) extends View(context, attr
 		lastX = x
 		lastY = y
 		onStroke = true
+		
+		xArray = new Vector
+		yArray = new Vector
+		xArray.add(x)
+		yArray.add(y)
 	}
 	
 	private def touchDragged(x:Int, y:Int) {
@@ -62,9 +75,25 @@ class CanvasView(context:Context, attrs:AttributeSet) extends View(context, attr
 		invalidate(new Rect(minX, minY, maxX, maxY))
 		lastX = x
 		lastY = y
+		
+		xArray.add(x)
+		yArray.add(y)
 	}
 
-	private def touchReleased(x:Int, y:Int) { onStroke = false }
+	private def touchReleased(x:Int, y:Int) { 
+		var stroke = new Stroke
+		stroke.userName = "test"
+		stroke.layer = layerIndex
+		stroke.clientTime = System.currentTimeMillis
+		stroke.penProperties = new PenProperties(penProperties)
+		stroke.xArray = xArray
+		stroke.yArray = yArray
+		strokesHistory += (stroke.clientTime -> stroke)
+		xArray = null
+		yArray = null
+		onStroke = false
+		println(strokesHistory.size + " " + stroke);
+	}
 
 	private def drawLine(lastX2:Int, lastY2:Int, x:Int, y:Int) {
 		val canvas:Canvas = new Canvas(imageBuffer.get)
@@ -73,6 +102,36 @@ class CanvasView(context:Context, attrs:AttributeSet) extends View(context, attr
 		paint.setStrokeWidth(penProperties.width)
 		paint.setColor(penProperties.color)
 		canvas.drawLine(lastX2, lastY2, x, y, paint)
+	}
+
+	private def drawStroke(bitmap:Bitmap, stroke:Stroke) {
+		if (stroke.xArray.size == 0) return
+		val canvas:Canvas = new Canvas(bitmap)
+		
+		val paint = new Paint(Paint.ANTI_ALIAS_FLAG)
+		paint.setStyle(Paint.Style.STROKE)
+		paint.setStrokeCap(Paint.Cap.ROUND)
+		paint.setStrokeJoin(Paint.Join.ROUND)
+		println("stroke width="+stroke.penProperties.width+" color="+stroke.penProperties.color)
+		paint.setStrokeWidth(stroke.penProperties.width)
+		paint.setColor(stroke.penProperties.color)
+
+		val path:Path = new Path
+		path.moveTo(stroke.xArray.get(0), stroke.yArray.get(0))
+		for (i <- 1 to stroke.xArray.size - 1)
+			path.lineTo(stroke.xArray.get(i), stroke.yArray.get(i))
+		canvas.drawPath(path, paint)
+	}
+		
+	def undoOneStroke {
+		println("undoOneStroke called")
+		if (strokesHistory.isEmpty) return
+		imageBuffer.get.eraseColor(0xffffffff)
+		
+		strokesHistory -= strokesHistory.keySet.last
+		strokesHistory.values.foreach { (s) => drawStroke(imageBuffer.get, s) }
+		
+		invalidate
 	}
 
 }
