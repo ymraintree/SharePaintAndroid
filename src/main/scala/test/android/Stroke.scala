@@ -1,34 +1,39 @@
 package test.android
 
-import java.util.Vector
+import scala.collection.mutable.ListBuffer
 
 class Stroke {
-	var clientTime, serverTime:Long = _
-	var userName:String = _
+	var strokeId:String =_
+	var canvasId:String = _
+	var clientTime:Long = _
+	var serverTime:Long = _
+	var userId:String = _
 	var penProperties:PenProperties = _
 	var layer:Int = _
-	var xArray, yArray:Vector[Int] = _
+	var xArray:ListBuffer[Int] = _
+	var yArray:ListBuffer[Int] = _
 	
 	def this(str:String) {
 		this()
 		setupVariables
-		xArray = new Vector
-		yArray = new Vector
+		xArray = new ListBuffer[Int]
+		yArray = new ListBuffer[Int]
 		val tagPoint:Array[String] = str.split(" points:")
 		val keyVals:Array[String] = tagPoint(0).split("\\s")
-		for (i <- 0 to keyVals.size) {
-			val keyVal = keyVals(i).split(":")
-			if (keyVal(0) == "clientTime") clientTime = keyVal(1).asInstanceOf[Long]
-			else if (keyVal(0) == "serverTime") serverTime = keyVal(1).asInstanceOf[Long]
+		keyVals.foreach { (k) =>
+			val keyVal = k.split(":")
+			if (keyVal(0) == "clientTime") clientTime = java.lang.Long.parseLong(keyVal(1))
+			else if (keyVal(0) == "serverTime") serverTime = java.lang.Long.parseLong(keyVal(1))
+			else if (keyVal(0) == "userId") userId = keyVal(1)
 			else if (keyVal(0) == "penProperties") penProperties = new PenProperties(keyVal(1))
-			else if (keyVal(0) == "userName") userName = keyVal(1)
+			else if (keyVal(0) == "layer") layer = java.lang.Integer.parseInt(keyVal(1))
 		}
 		val xys:Array[String] = tagPoint(1).split("\\s")
-		for (i <- 0 to xys.size) {
-			val xy = xys(i).split("-")
+		xys.foreach { (x) =>
+			val xy = x.split("-")
 			if (xy.size == 2) {
-				xArray.add(xy(0).asInstanceOf[Int])
-				yArray.add(xy(1).asInstanceOf[Int])
+				xArray += java.lang.Integer.parseInt(xy(0))
+				yArray += java.lang.Integer.parseInt(xy(1))
 			}
 		}
 		
@@ -37,19 +42,20 @@ class Stroke {
 	private def setupVariables {
 		clientTime = 0
 		serverTime = 0
-		layer = 0
-		userName = null
+		userId = null
 		penProperties = null
+		layer = 0
 	}
 	
 	override def toString = {
-		var result = "clientTime:" + clientTime +
-		" serverTime:" + serverTime + 
-		" userName:" + userName + 
-		" penProperties:" + penProperties + 
-		" layer:" + layer +
-		" points:"
-		for (i <- 0 to xArray.size - 1) result += xArray.get(i) + "-" + yArray.get(i) + " "
+		var result = 
+			"strokeId:" + userId + "@" + clientTime +
+			" clientTime:" + clientTime +
+			" userId:" + userId + 
+			" penProperties:" + penProperties + 
+			" layer:" + layer +
+			" points:"
+		for (i <- 0 to xArray.size - 1) result += xArray(i) + "-" + yArray(i) + " "
 		result
 	}
 }

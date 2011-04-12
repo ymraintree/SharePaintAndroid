@@ -10,14 +10,14 @@ class PenProperties(var color:Int, var width:Int, var density:Int) {
 	
 	def this(str:String) = {
 		this()
-		val strs = str.split("-")
-		color = strs(0).asInstanceOf[Int]
-		width = strs(1).asInstanceOf[Int]
-		density = strs(2).asInstanceOf[Int]
+		val strs = str.split("_")
+		color = java.lang.Integer.parseInt(strs(0))
+		width = java.lang.Integer.parseInt(strs(1))
+		density = java.lang.Integer.parseInt(strs(2))
 	}
 	
 	override def toString = {
-		color + "+" + width + "+" + density
+		color + "_" + width + "_" + density
 	}
 //	def this(c:Int, w:Int, d:Int) = {
 //		this()

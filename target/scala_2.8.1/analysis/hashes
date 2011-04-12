@@ -1,8 +1,9 @@
 #Source Hashes
-#Sun Apr 10 00:09:46 JST 2011
-src\\main\\scala\\test\\android\\Stroke.scala=fa9dec2ab80d2e7bbcc77b8abf721bfcbcee4bd5
-src\\main\\scala\\test\\android\\CanvasView.scala=baf19691033d506f937234dd0d7760162609be17
+#Tue Apr 12 16:34:46 JST 2011
+src\\main\\scala\\test\\android\\Stroke.scala=2c6b446c14998ccfc161b65711e3dfa887d561ba
+src\\main\\scala\\test\\android\\CanvasView.scala=0e56c44b9ceb48dd7f4823cd1a581c74320437d9
+src\\main\\scala\\test\\android\\ServerAgent.scala=9977ff9ee428be0e1af2d1e32e5caadf592e58ee
 src\\main\\java\\test\\android\\R.java=818110e2fe07d7ffef9d2bfc4b70042381273f9f
 src_managed\\main\\scala\\TR.scala=9f4894706ebba8136ee235b52262894317f6c2de
-src\\main\\scala\\Activity.scala=e27afb31054c6e05b961abd6083264e1b684d445
-src\\main\\scala\\test\\android\\PenProperties.scala=13d679931b758064c0d2ad738f7d5e9903b5c9f0
+src\\main\\scala\\Activity.scala=0b74e99bf742e7eb11075930690e542602781b83
+src\\main\\scala\\test\\android\\PenProperties.scala=eae7b6a6f959df085285e1e8ca267524824c1218
